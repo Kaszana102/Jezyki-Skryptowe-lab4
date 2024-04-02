@@ -1,0 +1,80 @@
+html,
+body {
+    height: 100%;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+.Navbar {
+    /*position: fixed;*/
+    display: flex;
+    justify-content: space-between;   /* poziomo */
+    align-items: center; /* pionowo */
+    flex-direction: row;  /* do określenia kierunku */
+    width: 100%;
+}
+
+
+.VerticalFlexCenter{
+    display: flex;
+    justify-content: center;   /* poziomo */
+    align-items: center; /* pionowo */
+    flex-direction: column;  /* do określenia kierunku */
+    gap: 10px;
+}
+
+.VerticalFlex{
+    display: flex;
+    justify-content: space-around;   /* poziomo */
+    align-items: center; /* pionowo */
+    flex-direction: column;  /* do określenia kierunku */
+    gap: 10px;
+}
+
+.HorizontalFlexCenter{
+    display: flex;
+    justify-content: center;   /* poziomo */
+    align-items: center; /* pionowo */
+    flex-direction: row;  /* do określenia kierunku */
+    gap: 30px;
+}
+
+.HorizontalFlexLeft{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.HorizontalFlexRight{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.HorizontalList{
+    display: flex;
+    justify-content: space-around;   /* poziomo */
+    align-items: center; /* pionowo */
+    flex-direction: row;  /* do określenia kierunku */
+    gap: 30px;
+}
+
+
+.Button{
+    color: white;
+    &:hover{
+        color: green;
+        }
+}

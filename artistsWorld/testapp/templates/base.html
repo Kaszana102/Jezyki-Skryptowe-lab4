@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+
+<body>
+
+<div class="Navbar">
+    <div class="HorizontalFlexLeft">
+        <a href=".." target="_self" class="admin-button" id="main">
+			<div> ARTISTSWORLD</div>
+		</a>
+        <div> SZUKAJ</div>
+    </div>
+    <div class="HorizontalFlexLeft">
+        {% if logged %}
+        <div>
+            {{nick}}
+        </div>
+        <a href="logout" target="_self" class="admin-button" id="logout">
+			<div class="Button"> WYLOGUJ</div>
+		</a>
+        {% else %}
+        <a href="login" target="_self" class="admin-button" id="login">
+			<div class="Button"> ZALOGUJ</div>
+		</a>
+        <a href="register" target="_self" class="admin-button" id="register">
+			<div class="Button"> ZAREJESTRUJ</div>
+		</a>
+        {% endif %}
+        <a href="publish" target="_self" class="admin-button" id="publish">
+			<div class="Button"> OPUBLIKUJ</div>
+		</a>
+    </div>
+</div>
+<div style="height: 100%;">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
