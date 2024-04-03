@@ -12,6 +12,12 @@ def StartSession(request, user):
     request.session['id'] = user.id
 
 
+def CheckLogged(request, context):
+    if 'logged' in request.session.keys():
+        context['logged'] = True
+        context['nick'] = request.session['nick']
+
+
 def main(request):
     template = loader.get_template('main.html')
     users = User.objects.all().values()
@@ -22,9 +28,32 @@ def main(request):
         'logged': False
     }
 
-    if 'logged' in request.session.keys():
-        context['logged'] = True
-        context['nick'] = request.session['nick']
+    context['comments'] = [
+        {
+            'text': 'a',
+            'subcomments': [
+                {'text': 'b',
+                 'subcomments': []},
+                {'text': 'c',
+                 'subcomments': []},
+                {'text': 'd',
+                 'subcomments': []}
+            ]
+        },
+        {
+            'text': 'e',
+            'subcomments': [
+                {'text': 'f',
+                 'subcomments': []},
+                {'text': 'g',
+                 'subcomments': []},
+                {'text': 'h',
+                 'subcomments': []}
+            ]
+        }
+    ]
+
+    CheckLogged(request, context)
 
     return HttpResponse(template.render(context, request))
 
@@ -87,6 +116,8 @@ def register(request):
 def publish(request):
     if request.method == 'POST':
         form = PublishForm(request.POST, request.FILES)  # A form bound to the POST data
+        context = {"form": form}
+        CheckLogged(request, context)
         if form.is_valid():  # All validation rules pass
             image = form.save(commit=False)
             image.authorID = request.session['id']
@@ -95,11 +126,15 @@ def publish(request):
         else:
             print(form.errors)
             form = PublishForm()
-            error = {
-                'reason': "Nieprawidłowe dane"
-            }
-            return render(request, "form.html", {"form": form, 'error': error})
+            context['error'] = "Nieprawidłowe dane"
+            context['form'] = form
+
+            return render(request, "form.html", context)
     else:
         template = loader.get_template('form.html')
         form = PublishForm()
-        return render(request, "form.html", {"form": form})
+        context = {"form": form}
+
+        CheckLogged(request, context)
+
+        return render(request, "form.html", context)

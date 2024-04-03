@@ -1,0 +1,11 @@
+<!-- requires comments object -->
+<ul>
+{% for comment in comments %}
+    <li>
+        {{ comment.text}}
+        {% if comment.subcomments|length %}
+            {% include "comments.html" with comments=comment.subcomments %}
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>

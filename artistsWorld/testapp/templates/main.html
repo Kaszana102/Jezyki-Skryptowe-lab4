@@ -8,7 +8,12 @@
 
   {% for x in images %}
     <li>{{ x.title }} {{ x.description }} {{ x.authorID }}</li>
-    <li><img src="{{x.image}}" width="120px"/></li>
+    <li><a href=""><img src="{{x.image}}" width="120px"/></a></li>
   {% endfor %}
 </ul>
+
+
+{% include "comments.html" %}
+
+
 {% endblock %}

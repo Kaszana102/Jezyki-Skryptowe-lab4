@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div>
+    <img>
+    <div class="VerticalFlex">
+        <div> Nick </div>
+        <div> Opis </div>
+        <div> data wstawienia </div>
+    </div>
 
+    <!-- comments-->
+    <div>
+        {% include "comments.html" %}
+    </div>
+</div>
 {% endblock %}
