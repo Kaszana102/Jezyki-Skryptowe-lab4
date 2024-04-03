@@ -8,7 +8,7 @@
 
   {% for x in images %}
     <li>{{ x.title }} {{ x.description }} {{ x.authorID }}</li>
-    <img src="{{x.image.url}}" width="120px"/>
+    <li><img src="{{x.image}}" width="120px"/></li>
   {% endfor %}
 </ul>
 {% endblock %}

@@ -10,7 +10,7 @@ class User(models.Model):
 class Image(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    image = models.ImageField()
+    image = models.ImageField(upload_to = "media")
     authorID = models.BigIntegerField()
 
 class Comment(models.Model):
