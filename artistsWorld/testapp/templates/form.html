@@ -2,11 +2,15 @@
 
 {% block content %}
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Zarejestruj">
 </form>
+
+{% if error %}
+<div>{{ error.reason }}</div>
+{% endif %}
 
 
 {% endblock %}

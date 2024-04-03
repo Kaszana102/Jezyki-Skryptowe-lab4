@@ -1,4 +1,7 @@
 from django import forms
+from django.forms import ModelForm
+
+from .models import User,Image
 
 
 class RegisterForm(forms.Form):
@@ -9,7 +12,9 @@ class RegisterForm(forms.Form):
 class LoginForm(forms.Form):
     mail = forms.CharField(max_length=255)
     password = forms.CharField(max_length=255)
-class PublishForm(forms.Form):
-    title = forms.CharField(max_length=255)
-    description = forms.CharField(max_length=255)
-    image = forms.ImageField()
+
+
+class PublishForm(ModelForm):
+    class Meta:
+        model = Image
+        fields = ["title", "description", "image"]

@@ -5,5 +5,10 @@
   {% for x in users %}
     <li>{{ x.nick }} {{ x.mail }}</li>
   {% endfor %}
+
+  {% for x in images %}
+    <li>{{ x.title }} {{ x.description }} {{ x.authorID }}</li>
+    <img src="{{x.image.url}}" width="120px"/>
+  {% endfor %}
 </ul>
 {% endblock %}
