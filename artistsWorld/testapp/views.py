@@ -138,3 +138,13 @@ def publish(request):
         CheckLogged(request, context)
 
         return render(request, "form.html", context)
+
+def image(request):
+    imageID = request.GET.get("imageID")
+
+    image = Image.objects.filter(id=imageID).first()
+
+    context = {
+        "image" : image
+    }
+    return render(request, "image.html",context)

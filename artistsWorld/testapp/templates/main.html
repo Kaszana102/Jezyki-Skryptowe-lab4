@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 <ul>
   {% for x in users %}
@@ -8,7 +10,11 @@
 
   {% for x in images %}
     <li>{{ x.title }} {{ x.description }} {{ x.authorID }}</li>
-    <li><a href=""><img src="{{x.image}}" width="120px"/></a></li>
+    <li>
+      <a href="image?imageID={{x.id}}">
+        <img src="{{MEDIA_URL}}{{x.image}}" width="120px"/>
+      </a>
+    </li>
   {% endfor %}
 </ul>
 
