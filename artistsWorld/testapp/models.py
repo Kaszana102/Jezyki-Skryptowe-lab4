@@ -16,7 +16,5 @@ class Image(models.Model):
 class Comment(models.Model):
     imageID = models.BigIntegerField()
     text = models.CharField(max_length=1024)
-
-class ResponseComment(models.Model):
-    commentID = models.BigIntegerField()
-    text = models.CharField(max_length=1024)
+    userID = models.BigIntegerField()
+    respondedCommentID = models.BigIntegerField()

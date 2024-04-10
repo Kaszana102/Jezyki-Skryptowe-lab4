@@ -1,8 +1,25 @@
 <!-- requires comments object -->
-<ul>
+<ul class="CommentList">
 {% for comment in comments %}
     <li>
-        {{ comment.text}}
+        <div class="Comment">
+            <div>
+                {{ comment.text}}
+            </div>
+            <label>
+                <input type="checkbox">
+                Odpowiedz
+            </label>
+            <form class="CommentForm" method="post">
+                <div class="VerticalFlexLeft">
+                    {% csrf_token %}
+                    <textarea name="text">TEkst wejściowy</textarea>
+                    <input type="hidden" name="respondedCommentID" value="{{comment.id}}">
+                    <input type="hidden" name="type" value="respondeComment">
+                    <input type="submit" value="Wyślij">
+                </div>
+            </form>
+        </div>
         {% if comment.subcomments|length %}
             {% include "comments.html" with comments=comment.subcomments %}
         {% endif %}

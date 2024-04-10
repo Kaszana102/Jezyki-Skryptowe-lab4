@@ -1,4 +1,5 @@
 @import "forms.css";
+@import "comment.css";
 
 html,
 body {
@@ -37,6 +38,14 @@ a {
     display: flex;
     justify-content: space-around;   /* poziomo */
     align-items: center; /* pionowo */
+    flex-direction: column;  /* do określenia kierunku */
+    gap: 10px;
+}
+
+.VerticalFlexLeft{
+    display: flex;
+    justify-content: space-around;   /* poziomo */
+    align-items: start; /* pionowo */
     flex-direction: column;  /* do określenia kierunku */
     gap: 10px;
 }
@@ -80,3 +89,4 @@ a {
         color: green;
         }
 }
+

@@ -1,0 +1,42 @@
+ input[type="checkbox"]{
+        display:none;
+    }
+
+.Comment{
+
+    & label + div{
+        transition-property: transform, height;
+        transition-duration: .2s;
+        transition-timing-function: ease-in-out;
+    }
+}
+
+
+label:has(input)+.CommentForm{
+        transform: scaleY(0);
+        height: 0;
+    }
+
+label:has(input:checked) + .CommentForm{
+        transform: scaleY(1);
+        height: 150px;
+    }
+
+.CommentForm{
+
+    & textarea{
+        resize: none;
+        height: 100px;
+        width: 80%;
+    }
+}
+
+.CommentList{
+    list-style-type: none;
+
+    background-color: #111111;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+}

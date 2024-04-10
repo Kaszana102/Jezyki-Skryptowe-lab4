@@ -12,6 +12,21 @@
     </div>
 
     <!-- comments-->
+
+    <div>
+        <label>
+            <input type="checkbox">
+            Dodaj komentarz!
+        </label>
+        <form class="CommentForm" method="post">
+            <div class="VerticalFlexLeft">
+                {% csrf_token %}
+                <input type="hidden" name="type" value="comment">
+                <textarea id="text" name="text">TEkst wejściowy</textarea>
+                <input type="submit" value="Wyślij">
+            </div>
+        </form>
+    </div>
     <div>
         {% include "comments.html" %}
     </div>

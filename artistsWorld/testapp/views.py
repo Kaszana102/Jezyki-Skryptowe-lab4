@@ -139,12 +139,45 @@ def publish(request):
 
         return render(request, "form.html", context)
 
+def getCommentTree(commentID)->[] :
+    comments = Comment.objects.filter(respondedCommentID=commentID).all()
+    for comment in comments:
+        comment.subcomments = getCommentTree(comment.id)
+
+    return comments
+
 def image(request):
-    imageID = request.GET.get("imageID")
+    if request.method == 'POST':
 
-    image = Image.objects.filter(id=imageID).first()
 
-    context = {
-        "image" : image
-    }
-    return render(request, "image.html",context)
+        comment = Comment()
+        comment.imageID= request.GET.get("imageID")
+        comment.text = request.POST.get("text", '')
+        comment.userID = request.session['id']
+        if request.GET.get("type") == 'comment':
+            comment.respondedCommentID = -1
+        else:
+            comment.respondedCommentID = int(request.POST.get("respondedCommentID", ''))
+
+        if comment.text != '' and comment.userID >= 0 and comment.respondedCommentID >= 0:
+            comment.save()
+
+        response = redirect('image')
+        response['Location'] += '?imageID='+str(request.GET.get("imageID"))
+        return response
+    else:
+        imageID = request.GET.get("imageID")
+
+
+        image = Image.objects.filter(id=imageID).first()
+
+        context = {
+            "image" : image
+        }
+
+        comments = Comment.objects.filter(imageID=imageID, respondedCommentID=-1).all()
+        context['comments'] = comments
+        for comment in comments:
+            comment.subcomments = getCommentTree(comment.id)
+
+        return render(request, "image.html",context)
