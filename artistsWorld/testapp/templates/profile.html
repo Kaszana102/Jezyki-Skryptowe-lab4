@@ -1,5 +1,34 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block title %}
+  <h1>Profil: {{author.username}}</h1>
+{% endblock %}
+
 {% block content %}
+
+<div class="ImageGrid">
+  {% for x in images %}
+    <a href="image?imageID={{x.id}}">
+      <div class="ImagePreview">
+        <img src="/media/{{x.image}}" width="120px"/>
+        <div class="ImageInfo">{{ x.title }} {{ x.author.username }}</div>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+<div class="HorizontalList">
+  <div class="HorizontalList" style="width:20%;">
+    {% if prev_page >= 0 %}
+    <a href="{{url}}page={{prev_page}}"> Poprzednia strona </a>
+    {% endif %}
+
+    {% if next_page < max_pages %}
+    <a href="{{url}}page={{next_page}}"> Następna strona </a>
+    {% endif %}
+  </div>
+</div>
 
 {% endblock %}

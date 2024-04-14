@@ -1,0 +1,23 @@
+.ImageContainer{
+    height: 600px;
+    width: 90%;
+    & img{
+        object-fit: contain;
+    }
+}
+
+.ImageHorizontal{
+    width:100%;
+    height: auto;
+}
+
+.ImageVertical{
+    width:auto;
+    height: 100%;
+}
+.ImageDetails{
+    width:90%;
+    margin-bottom: 30px;
+}
+
+

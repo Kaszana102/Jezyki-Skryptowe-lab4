@@ -1,0 +1,36 @@
+.ImageGrid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.ImagePreview{
+    position:relative;
+    & > img{
+        height: 200px;
+        width: 100%;
+    }
+
+    & .ImageInfo{
+        background-color: rgba(0,0,0,0);
+        color: rgba(1,1,1,0);
+    }
+}
+
+.ImagePreview:hover > .ImageInfo{
+        background-color: rgba(0,0,0,0.2);
+        color: rgba(1,1,1,1);
+}
+
+.ImageInfo{
+    position: absolute;
+    width:100%;
+    height:100%;
+
+    top:0;
+    transition-property: background-color,color;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+
+}

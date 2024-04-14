@@ -2,13 +2,46 @@
 
 {% block content %}
 <div>
-    <img>
     <div class="VerticalFlex">
-         <img src="{{MEDIA_URL}}{{image.image}}" width="120px"/>
-        <div> Nick  </div>
-        <div> {{image.title}}  </div>
-        <div> {{image.description}} </div>
-        <div> data wstawienia </div>
+        <div class="HorizontalList">
+            <div class="ImageContainer">
+                {% if image.image.size.x > image.image.size.y %}
+                    <img class="ImageHorizontal" src="/media/{{image.image}}" width="120px"/>
+                {% else %}
+                    <img class="ImageVertical" src="/media/{{image.image}}" width="120px"/>
+                {% endif %}
+            </div>
+        </div>
+        <div class="ImageDetails">
+            <div class="HorizontalSpread" style="width:100%;">
+                <div class="VerticalFlexLeft">
+                    <h1 style="margin:0"> {{image.title}}  </h1>
+                    <a href="/profile?userID={{image.author.id}}">
+                        <h3 style="margin:0"> {{image.author.username}}  </h3>
+                    </a>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px"> {{image.description}} </div>
+
+        </div>
+        {% if admin or image.author.id == userID %}
+        <form  method="post">
+            {% csrf_token %}
+            <input type="hidden" name="type" value="remove_image">
+            <input type="submit" value="Usuń zdjęcie">
+        </form>
+        {% endif %}
+
+        {% if image.author.id == userID %}
+        <form  method="post" action="edit_publish">
+            {% csrf_token %}
+            <input type="hidden" name="type" value="begin">
+            <input type="hidden" name="imageID" value="{{image.id}}">
+            <input type="submit" value="Edytuj zdjęcie">
+        </form>
+        {% endif %}
+
     </div>
 
     <!-- comments-->

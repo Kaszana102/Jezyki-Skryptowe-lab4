@@ -11,13 +11,32 @@
         <a href=".." target="_self" class="admin-button" id="main">
 			<div> ARTISTSWORLD</div>
 		</a>
-        <div> SZUKAJ</div>
+        {% if profile_search %}
+        <form method="get" action="/profile">
+            <input type="hidden" name="userID" value="{{userID}}">
+            <input type="text" name="query" placeholder="Szukaj w profilu">
+        </form>
+        {% else %}
+        <form method="get" action=".">
+            <input type="text" name="query" placeholder="Szukaj">
+        </form>
+        {% endif %}
+
+        {% block title %}
+        {% endblock %}
+
     </div>
     <div class="HorizontalFlexLeft">
         {% if logged %}
-        <div>
-            {{nick}}
-        </div>
+        <a href="/profile?userID={{userID}}">
+            {% if admin %}
+            <div style="background-color: green;">
+                {% else %}
+            <div>
+                {% endif %}
+                {{nick}}
+            </div>
+        </a>
         <a href="logout" target="_self" class="admin-button" id="logout">
 			<div class="Button"> WYLOGUJ</div>
 		</a>
@@ -38,11 +57,20 @@
 			<div class="Button"> OPUBLIKUJ</div>
 		</a>
         {% endif %}
+        {%  if admin %}
+        <a href="admin" target="_self" class="admin-button">
+			<div class="Button"> PANEL ADMINA</div>
+		</a>
+        {% endif %}
+
     </div>
 </div>
+</div>
 <div style="height: 100%;">
-    {% block content %}
-    {% endblock %}
+    <div style="margin: 2%;">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 </body>
 </html>

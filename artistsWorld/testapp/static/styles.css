@@ -1,5 +1,7 @@
 @import "forms.css";
 @import "comment.css";
+@import "image_grid.css";
+@import "image.css";
 
 html,
 body {
@@ -77,6 +79,14 @@ a {
 .HorizontalList{
     display: flex;
     justify-content: space-around;   /* poziomo */
+    align-items: center; /* pionowo */
+    flex-direction: row;  /* do określenia kierunku */
+    gap: 30px;
+}
+
+.HorizontalSpread{
+    display: flex;
+    justify-content: space-between;   /* poziomo */
     align-items: center; /* pionowo */
     flex-direction: row;  /* do określenia kierunku */
     gap: 30px;

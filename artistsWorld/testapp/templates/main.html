@@ -3,23 +3,27 @@
 {% load static %}
 
 {% block content %}
-<ul>
-  {% for x in users %}
-    <li>{{ x.nick }} {{ x.mail }}</li>
-  {% endfor %}
-
+<div class="ImageGrid">
   {% for x in images %}
-    <li>{{ x.title }} {{ x.description }} {{ x.authorID }}</li>
-    <li>
-      <a href="image?imageID={{x.id}}">
-        <img src="{{MEDIA_URL}}{{x.image}}" width="120px"/>
-      </a>
-    </li>
+    <a href="image?imageID={{x.id}}">
+      <div class="ImagePreview">
+        <img src="/media/{{x.image}}" width="120px"/>
+        <div class="ImageInfo">{{ x.title }} {{ x.author.username }}</div>
+      </div>
+    </a>
   {% endfor %}
-</ul>
+</div>
 
+<div class="HorizontalList">
+  <div class="HorizontalList" style="width:20%;">
+    {% if prev_page >= 0%}
+    <a href="?query={{query}}&page={{prev_page}}"> Poprzednia strona </a>
+    {% endif %}
 
-{% include "comments.html" %}
-
+    {% if next_page < max_pages%}
+    <a href="?query={{query}}&page={{next_page}}"> Następna strona </a>
+    {% endif %}
+  </div>
+</div>
 
 {% endblock %}
