@@ -7,12 +7,12 @@ from .models import *
 class RegisterForm(forms.Form):
     nick = forms.CharField(max_length=255)
     mail = forms.CharField(max_length=255)
-    password = forms.CharField(max_length=255)
+    password = forms.CharField(max_length=255,widget=forms.PasswordInput())
 
 
 class LoginForm(forms.Form):
     mail = forms.CharField(max_length=255)
-    password = forms.CharField(max_length=255)
+    password = forms.CharField(max_length=255,widget=forms.PasswordInput())
 
 
 class UpdateImageForm(forms.Form):

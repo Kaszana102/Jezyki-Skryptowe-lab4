@@ -11,7 +11,7 @@
             <div>
                 {{ comment.text}}
             </div>
-            <label>
+            <label class="BlackHref" style="font-size: 0.9vw; margin-bottom:10px; padding:3px;">
                 <input type="checkbox">
                 Odpowiedz
             </label>
@@ -21,7 +21,7 @@
                     <textarea name="text">TEkst wejściowy</textarea>
                     <input type="hidden" name="respondedCommentID" value="{{comment.id}}">
                     <input type="hidden" name="type" value="respondedComment">
-                    <input type="submit" value="Wyślij">
+                    <input class="WhiteHref" type="submit" value="Wyślij">
                 </div>
             </form>
             {% if admin %}
@@ -30,7 +30,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="respondedCommentID" value="{{comment.id}}">
                     <input type="hidden" name="type" value="delete_comment">
-                    <input type="submit" value="Usuń komentarz">
+                    <input class="ButtonRed" type="submit" value="Usuń komentarz">
                 </div>
             </form>
             {% endif %}

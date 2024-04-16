@@ -5,7 +5,7 @@
     <div class="VerticalFlex">
         <div class="HorizontalList">
             <div class="ImageContainer">
-                {% if image.image.size.x > image.image.size.y %}
+                {% if image.image.width > image.image.height %}
                     <img class="ImageHorizontal" src="/media/{{image.image}}" width="120px"/>
                 {% else %}
                     <img class="ImageVertical" src="/media/{{image.image}}" width="120px"/>
@@ -17,30 +17,31 @@
                 <div class="VerticalFlexLeft">
                     <h1 style="margin:0"> {{image.title}}  </h1>
                     <a href="/profile?userID={{image.author.id}}">
-                        <h3 style="margin:0"> {{image.author.username}}  </h3>
+                        <h3 style="margin:0"> {{image.author.username}} </h3>
                     </a>
                 </div>
             </div>
 
             <div style="margin-top: 30px"> {{image.description}} </div>
-
         </div>
-        {% if admin or image.author.id == userID %}
-        <form  method="post">
-            {% csrf_token %}
-            <input type="hidden" name="type" value="remove_image">
-            <input type="submit" value="Usuń zdjęcie">
-        </form>
-        {% endif %}
+        <div class="HorizontalList">
+            {% if admin or image.author.id == userID %}
+            <form  method="post">
+                {% csrf_token %}
+                <input type="hidden" name="type" value="remove_image">
+                <input class="ButtonRed" type="submit" value="Usuń zdjęcie" onClick='return confirmSubmit()'>
+            </form>
+            {% endif %}
 
-        {% if image.author.id == userID %}
-        <form  method="post" action="edit_publish">
-            {% csrf_token %}
-            <input type="hidden" name="type" value="begin">
-            <input type="hidden" name="imageID" value="{{image.id}}">
-            <input type="submit" value="Edytuj zdjęcie">
-        </form>
-        {% endif %}
+            {% if image.author.id == userID %}
+            <form  method="post" action="edit_publish">
+                {% csrf_token %}
+                <input type="hidden" name="type" value="begin">
+                <input type="hidden" name="imageID" value="{{image.id}}">
+                <input class="ButtonBlue" type="submit" value="Edytuj zdjęcie">
+            </form>
+            {% endif %}
+        </div>
 
     </div>
 
@@ -56,7 +57,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="type" value="comment">
                 <textarea id="text" name="text">TEkst wejściowy</textarea>
-                <input type="submit" value="Wyślij">
+                <input class="BlackHref" type="submit" value="Wyślij">
             </div>
         </form>
     </div>

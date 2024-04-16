@@ -5,8 +5,25 @@
     <div class="HorizontalFlexCenter" >
         <form method="post" enctype="multipart/form-data" class="VerticalFlex">
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="{{ submit_text }}">
+
+            {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field.errors }}
+            {{ hidden_field }}
+            {% endfor %}
+
+
+            {% for field in form.visible_fields %}
+
+              <div class="inputbox">
+                  {{ field.errors }}
+                  {{ field }}
+                  {{ field.help_text }}
+                <span>
+                  {{ field.label_tag }}
+                </span>
+              </div>
+            {% endfor %}
+            <input class="ButtonBlue" type="submit" value="{{ submit_text }}">
         </form>
     </div>
 </div>

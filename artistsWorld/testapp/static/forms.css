@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
+
+
+.inputbox {
+  position: relative;
+  width: 25vw;
+  height: 50px;
+  margin-bottom: 50px;
+}
+.inputbox input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 2px solid #000;
+  outline: none;
+  background: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  color: white;
+}
+.inputbox:last-child {
+  margin-bottom: 0;
+}
+.inputbox span {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-size: 1em;
+  transition: 0.6s;
+  font-family: sans-serif;
+}
+.inputbox input:focus ~ span,
+.inputbox input:valid ~ span {
+  transform: translateX(-13px) translateY(-1.6em);
+  font-size: 1em;
+}
+
+.inputbox input[type=file]{
+
+}
+
+.inputbox input[type=file] ~ span{
+    transform: translateX(-13px) translateY(-1.6em);
+    font-size: 1em;
+}

@@ -1,0 +1,63 @@
+.WhiteHref{
+    transition-property: background-color,color;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    background-color: rgba(128,128,128,0);
+    padding: 10px;
+
+    border-radius: 10px;
+
+    color:white;
+    &:hover{
+        color:black;
+        background-color: rgba(255,255,255,0.5);
+    }
+}
+
+.BlackHref{
+    transition-property: background-color,color;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+
+    background-color: rgba(128,128,128,0);
+    padding: 10px;
+
+    border-radius: 10px;
+
+    color:black;
+    &:hover{
+        color:white;
+        background-color: rgba(0,0,0,0.5);
+    }
+}
+
+.ButtonRed{
+    transition-property: background-color,color;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+
+    outline: none;
+    background: none;
+    border-style: none;
+    border-radius:25px;
+    padding: 10px;
+    background-color: rgb(255,255,255);
+    &:hover{
+        background-color: rgb(255,0,0);
+    }
+}
+.ButtonBlue{
+    transition-property: background-color,color;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+
+    outline: none;
+    background: none;
+    border-style: none;
+    border-radius:25px;
+    padding: 10px;
+    background-color: rgb(255,255,255);
+    &:hover{
+        background-color: rgb(0,255,0);
+    }
+}

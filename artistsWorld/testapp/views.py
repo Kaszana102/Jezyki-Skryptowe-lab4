@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 import math
 
-IMAGES_PER_PAGE = 1
+IMAGES_PER_PAGE = 15
 
 
 def StartSession(request, user):

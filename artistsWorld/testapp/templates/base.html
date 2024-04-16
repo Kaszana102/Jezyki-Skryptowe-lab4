@@ -3,74 +3,84 @@
 <html>
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<script src="{% static 'js.js' %}"></script>
+
 
 <body>
-
-<div class="Navbar">
-    <div class="HorizontalFlexLeft">
-        <a href=".." target="_self" class="admin-button" id="main">
-			<div> ARTISTSWORLD</div>
-		</a>
-        {% if profile_search %}
-        <form method="get" action="/profile">
-            <input type="hidden" name="userID" value="{{userID}}">
-            <input type="text" name="query" placeholder="Szukaj w profilu">
-        </form>
-        {% else %}
-        <form method="get" action=".">
-            <input type="text" name="query" placeholder="Szukaj">
-        </form>
-        {% endif %}
-
-        {% block title %}
-        {% endblock %}
-
-    </div>
-    <div class="HorizontalFlexLeft">
-        {% if logged %}
-        <a href="/profile?userID={{userID}}">
-            {% if admin %}
-            <div style="background-color: green;">
+    <div class="margins">
+        <div class="Navbar">
+            <div class="HorizontalFlexLeft">
+                <a class="WhiteHref" href=".." target="_self"  id="main">
+                    <div> ARTISTSWORLD</div>
+                </a>
+                {% if profile_search %}
+                <form method="get" action="/profile">
+                    <input type="hidden" name="userID" value="{{userID}}">
+                    <div class="inputbox">
+                        <input type="text" name="query"  required="required">
+                        <span>Szukaj w profilu: {{author.username}}</span>
+                    </div>
+                </form>
                 {% else %}
-            <div>
+                <form method="get" action=".">
+                    <div class="inputbox">
+                        <input type="text" name="query" required="required">
+                        <span>Szukaj</span>
+                    </div>
+                </form>
                 {% endif %}
-                {{nick}}
-            </div>
-        </a>
-        <a href="logout" target="_self" class="admin-button" id="logout">
-			<div class="Button"> WYLOGUJ</div>
-		</a>
-        {% else %}
-        <a href="login" target="_self" class="admin-button" id="login">
-			<div class="Button"> ZALOGUJ</div>
-		</a>
-        <a href="register" target="_self" class="admin-button" id="register">
-			<div class="Button"> ZAREJESTRUJ</div>
-		</a>
-        {% endif %}
-        {% if logged %}
-        <a href="publish" target="_self" class="admin-button" id="publish">
-			<div class="Button"> OPUBLIKUJ</div>
-		</a>
-        {% else %}
-        <a href="login" target="_self" class="admin-button" id="publish_login">
-			<div class="Button"> OPUBLIKUJ</div>
-		</a>
-        {% endif %}
-        {%  if admin %}
-        <a href="admin" target="_self" class="admin-button">
-			<div class="Button"> PANEL ADMINA</div>
-		</a>
-        {% endif %}
 
+                {% block title %}
+                {% endblock %}
+
+            </div>
+            <div class="HorizontalFlexLeft" style="gap: 5px;">
+                {% if logged %}
+                <a class="WhiteHref" href="/profile?userID={{userID}}">
+                    {% if admin %}
+                    <div style="color: red;">
+                        {% else %}
+                    <div>
+                        {% endif %}
+                        {{nick}}
+                    </div>
+                </a>
+                <a class="WhiteHref" href="logout" target="_self"  id="logout">
+                    <div> WYLOGUJ</div>
+                </a>
+                {% else %}
+                <a class="WhiteHref" href="login" target="_self"  id="login">
+                    <div> ZALOGUJ</div>
+                </a>
+                <a class="WhiteHref" href="register" target="_self"  id="register">
+                    <div> ZAREJESTRUJ</div>
+                </a>
+                {% endif %}
+                {% if logged %}
+                <a class="WhiteHref" href="publish" target="_self"  id="publish">
+                    <div> OPUBLIKUJ</div>
+                </a>
+                {% else %}
+                <a class="WhiteHref" href="login" target="_self"  id="publish_login">
+                    <div> OPUBLIKUJ</div>
+                </a>
+                {% endif %}
+                {%  if admin %}
+                <a class="WhiteHref" href="admin" target="_self" >
+                    <div> PANEL ADMINA</div>
+                </a>
+                {% endif %}
+
+            </div>
+        </div>
+        </div>
+        <div style="height: 100%; margin: 2%;">
+                {% block content %}
+                {% endblock %}
+        </div>
     </div>
-</div>
-</div>
-<div style="height: 100%;">
-    <div style="margin: 2%;">
-        {% block content %}
-        {% endblock %}
-    </div>
-</div>
 </body>
 </html>

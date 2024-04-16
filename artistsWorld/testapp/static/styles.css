@@ -2,15 +2,36 @@
 @import "comment.css";
 @import "image_grid.css";
 @import "image.css";
+@import "buttons.css";
 
-html,
-body {
-    height: 100%;
+
+html{
+/*height: 100%;*/
+    height:1px;
+    min-height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-image: linear-gradient(black, gray);
+background-attachment: fixed;
+
 }
 
 body{
-    background-color: black;
+    height: 80%;
+
+
+    margin:0;
     color: white;
+    font-family: roboto;
+    font-weight: 700;
+}
+.margins{
+    margin-left: 2%;
+    margin-right: 2%;
+    position:relative;
 }
 
 a {
@@ -19,12 +40,13 @@ a {
 }
 
 .Navbar {
-    /*position: fixed;*/
     display: flex;
     justify-content: space-between;   /* poziomo */
     align-items: center; /* pionowo */
     flex-direction: row;  /* do określenia kierunku */
     width: 100%;
+    margin-top:2em;
+    font-size: 2vw;
 }
 
 
@@ -90,13 +112,5 @@ a {
     align-items: center; /* pionowo */
     flex-direction: row;  /* do określenia kierunku */
     gap: 30px;
-}
-
-
-.Button{
-    color: white;
-    &:hover{
-        color: green;
-        }
 }
 
